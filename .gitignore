@@ -1,0 +1,126 @@
+int SW1 = 1; 
+int SW2 = 2; 
+int SW3 = 3;
+int LED1 = 4;  
+int LED2 = 5;  
+int LED3 = 6;  
+int LED4 = 7;  
+int LED5 = 8;  
+int LED6 = 9;  
+int LED7 = 10;  
+int LED8 =11;  
+int LED9 =12;  
+int LED10 = 13;
+int leds[10]={LED1,LED2,LED3,LED4,LED5,LED6,LED7,LED8,LED9,LED10} ;
+
+int contador=0;
+int contador1=1;
+int ciclo=0;
+
+
+void setup() {
+pinMode (SW1,INPUT); 
+pinMode (SW2,INPUT); 
+pinMode (SW3,INPUT); 
+pinMode (LED1,OUTPUT); 
+pinMode (LED2,OUTPUT);
+pinMode (LED3,OUTPUT); 
+pinMode (LED4,OUTPUT); 
+pinMode (LED5,OUTPUT); 
+pinMode (LED6,OUTPUT); 
+pinMode (LED7,OUTPUT); 
+pinMode (LED8,OUTPUT); 
+pinMode (LED9,OUTPUT); 
+pinMode (LED10,OUTPUT); 
+
+}
+
+void loop() {
+int  sw1=digitalRead(SW1);
+int  sw2=digitalRead(SW2);
+int  sw3=digitalRead(SW3);
+
+  if(sw1==LOW)
+      {
+          if(sw2==LOW&&sw3==LOW){  //función  0 0 0
+          for(int a=0;a<11;a++)
+          {
+            digitalWrite(leds[a],LOW);
+          }
+        }
+        if (sw2==LOW&&sw3==HIGH){ //función  0 0 1
+       for(int a=0;a<11;a++)
+          {
+            digitalWrite(leds[a],LOW);
+          }
+        }
+        if (sw2==HIGH&&sw3==LOW){ //función  0 1 0
+          for(;contador1<11;contador1++)
+   {
+        digitalWrite(leds[contador1],HIGH);
+        delay(200);
+        digitalWrite(leds[contador1],LOW);
+        delay(200);
+        contador1++;
+   }
+   contador1=1;     
+          
+        }
+        if (sw2==HIGH&&sw3==HIGH){ //funcion 0 1 1 
+          for(int contador2=0;contador2<11;contador2++)
+   {
+        digitalWrite(leds[contador2],HIGH);
+        delay(200);
+        digitalWrite(leds[contador2],LOW);
+        delay(200);
+        contador2++;
+   }       
+        }
+        
+       else{
+        if (sw2==LOW&&sw3==LOW) // funcion 1 0 0
+        {
+           for(int a=0;a<11;a++)
+          {
+            digitalWrite(leds[a],LOW);
+          }
+        }
+        if (sw2==LOW&&sw3==HIGH){ //funcion 1 0 1
+        int aleatorio;
+   for(int b=0;b<11;b++)
+   {
+        aleatorio=random(10);
+        digitalWrite(leds[aleatorio],HIGH);
+        delay(200);
+        digitalWrite(leds[aleatorio],LOW);
+        delay(200); 
+   }
+       }
+       if (sw2==HIGH&&sw3==LOW){ //funci 1 1 0
+        int aleatorio;
+   for(int b=0;b<11;b++)
+   {
+        aleatorio=9;
+        digitalWrite(leds[b],HIGH);
+        digitalWrite(leds[aleatorio-b],HIGH);
+        delay(100);
+        digitalWrite(leds[b],LOW);
+        digitalWrite(leds[aleatorio-b],LOW);
+        delay(100);
+     }
+       }
+       if (sw2==HIGH&&sw3==HIGH){ //funcion 1 1 1
+        while(ciclo<2){
+           for(contador=0;contador<11;contador++)
+   {
+        digitalWrite(leds[contador],HIGH);
+        delay(90);
+        digitalWrite(leds[contador],LOW);
+        delay(90);
+   }
+   ciclo++;
+        }
+               }       
+        }
+}
+}
